@@ -86,7 +86,7 @@ Note that you'll have to restart the service when you update the `on_item` funct
 ## Examples wanted !
 
 I'd be happy to include your own variations of this script or the `on_item` function
-in the [examples](https://github.com/martinkirch/drop2beets/tree/master/examples) folder, 
+in the [examples](https://github.com/martinkirch/drop2beets/tree/master/drop2beets/examples) folder,
 feel free to post them in
 [Issues](https://github.com/martinkirch/drop2beets/issues) or
 [Pull Requests](https://github.com/martinkirch/drop2beets/pulls).
