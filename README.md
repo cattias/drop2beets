@@ -67,6 +67,8 @@ drop2beets:
 
 Now you're ready to test by calling `beet dropbox` on the command line and
 dropping a few files in the folder.
+Note that drop2beets starts 10 seconds after the last event it received about a file,
+to ensure that the file has been copied or moved completely.
 Hit Ctrl+C to close the script.
 
 For a longer-term installation, configure a log file path

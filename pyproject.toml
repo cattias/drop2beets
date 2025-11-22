@@ -1,10 +1,13 @@
-[tool.poetry]
+[project]
 name = "drop2beets"
-version = "2.0.1"
+version = "2.1.0"
 description = "Import singles to Beets as soon as they are dropped in a folder"
-authors = ["Martin Kirchgessner <martin.kirch@gmail.com>"]
+authors = [
+    { name = "Martin Kirchgessner", email = "martink@gresille.org" },
+]
 license = "WTFPL"
 readme = "README.md"
+requires-python = ">=3.10,<4"
 homepage = "https://github.com/martinkirch/drop2beets"
 repository = "https://github.com/martinkirch/drop2beets.git"
 keywords = ["watch", "beets", "music", "import"]
@@ -16,14 +19,21 @@ packages = [
     { include = "beetsplug" },
     { include = "examples" },
 ]
+dependencies = [
+    "watchdog (>=6.0.0,<7.0.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-watchdog = "^3.0.0"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.1,<10.0.0)",
+    "beets (>=2.5.1,<3.0.0)"
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
