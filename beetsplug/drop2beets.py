@@ -10,6 +10,7 @@ from watchdog.events import FileSystemEventHandler, FileSystemEvent, FileMovedEv
 
 from beets import config
 from beets.plugins import BeetsPlugin
+from beetsplug import plexupdate
 from beets.ui import Subcommand, commands
 
 
@@ -64,8 +65,15 @@ class Drop2BeetsHandler(FileSystemEventHandler):
                     self.debounce[path] = -1
                     _logger.info("Processing %s", path)
                     commands.import_files(self.lib, [path], None)
-                    _logger.info("Processing done. Run `beet update`")
-                    commands.update_func(self.lib, None, None)
+                    _logger.info("Processing done. Now tell Plex to update")
+                    plexupdate.update_plex(
+                        self.config["plex"]["host"],
+                        self.config["plex"]["port"],
+                        self.config["plex"]["token"],
+                        self.config["plex"]["library_name"].get(),
+                        self.config["plex"]["secure"],
+                        self.config["plex"]["ignore_cert_errors"],
+                    )
 
     def on_any_event(self, event:FileSystemEvent):
         _logger.debug("got %r", event)
