@@ -64,6 +64,7 @@ class Drop2BeetsHandler(FileSystemEventHandler):
                     self.debounce[path] = -1
                     _logger.info("Processing %s", path)
                     commands.import_files(self.lib, [path], None)
+                    commands.update_items(self.lib, query=None, album=None, move=None, pretend=None, fields=None)
 
     def on_any_event(self, event:FileSystemEvent):
         _logger.debug("got %r", event)
