@@ -66,7 +66,7 @@ class Drop2BeetsHandler(FileSystemEventHandler):
                     _logger.info("Processing %s", path)
                     commands.import_files(self.lib, [path], None)
                     _logger.info("Processing done. Now tell Plex to update")
-                    plexupdate.update_plex(
+                    r = plexupdate.update_plex(
                         self.config["plex"]["host"],
                         self.config["plex"]["port"],
                         self.config["plex"]["token"],
@@ -74,6 +74,7 @@ class Drop2BeetsHandler(FileSystemEventHandler):
                         self.config["plex"]["secure"],
                         self.config["plex"]["ignore_cert_errors"],
                     )
+                    _logger.info("Plex update done: %s", r.status_code)
 
     def on_any_event(self, event:FileSystemEvent):
         _logger.debug("got %r", event)
