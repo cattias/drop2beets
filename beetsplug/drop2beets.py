@@ -64,6 +64,7 @@ class Drop2BeetsHandler(FileSystemEventHandler):
                     self.debounce[path] = -1
                     _logger.info("Processing %s", path)
                     commands.import_files(self.lib, [path], None)
+                    _logger.info("Processing done. Run `beet update`")
                     commands.update_func(self.lib, None, None)
 
     def on_any_event(self, event:FileSystemEvent):
